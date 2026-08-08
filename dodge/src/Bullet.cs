@@ -5,7 +5,8 @@ using Microsoft.Xna.Framework.Input;
 namespace dodge;
 
 public class Bullet {
-    public Rectangle Rect;
+    public Rectangle RenderRect {get; set;} = new Rectangle(0, 0, 0, 0);
+    public Rect2F Rect {get; set}
     public float speed = 200.0f;
     public Vector2 velocity = new Vector2(0.0f, 0.0f);
 

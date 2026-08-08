@@ -9,12 +9,12 @@ public class Scene {
     {
     }
 
-    public void Update(Game1 game, GameTime dt)
+    public void Update(Game1 game)
     {
         game.Field.Update(game);
     }
 
-    public void Render(Game1 game, GameTime dt)
+    public void Render(Game1 game)
     {
         game.Field.Render(game);
     }

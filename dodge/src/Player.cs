@@ -15,7 +15,19 @@ public class Player {
         KeyboardState keyboardState = Keyboard.GetState();
         if (keyboardState.IsKeyDown(Keys.Left))
         {
-            Rect.Pos.X -= new Vector2(Speed * game.Dt, 0.0f);
+            Rect.Pos = new Vector2(Rect.Pos.X - Speed * game.Dt, Rect.Pos.Y);
+        }
+        if (keyboardState.IsKeyDown(Keys.Right))
+        {
+            Rect.Pos = new Vector2(Rect.Pos.X + Speed * game.Dt, Rect.Pos.Y);
+        }
+        if (keyboardState.IsKeyDown(Keys.Up))
+        {
+            Rect.Pos = new Vector2(Rect.Pos.X, Rect.Pos.Y - Speed * game.Dt);
+        }
+        if (keyboardState.IsKeyDown(Keys.Down))
+        {
+            Rect.Pos = new Vector2(Rect.Pos.X, Rect.Pos.Y + Speed * game.Dt);
         }
     }
 
