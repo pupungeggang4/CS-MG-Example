@@ -11,11 +11,11 @@ public class Scene {
 
     public void Update(Game1 game, GameTime dt)
     {
-        game.Field.Player.Update(game, dt);
+        game.Field.Update(game);
     }
 
     public void Render(Game1 game, GameTime dt)
     {
-        game.Field.Player.Render(game, dt);
+        game.Field.Render(game);
     }
 }

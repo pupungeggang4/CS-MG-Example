@@ -14,11 +14,11 @@ public class Bullet {
         Rect = rect;
     }
 
-    public void Render(Game1 game, GameTime dt)
+    public void Render(Game1 game)
     {
     }
 
-    public void Update(Game1 game, GameTime dt)
+    public void Update(Game1 game)
     {
 
     }

@@ -19,6 +19,8 @@ public class Game1 : Game
     public int VirtualHeight {get; set;} = 600;
 
     public Field Field {get; set;}
+    public float Dt {get; set;}
+    public float DtRender {get; set;}
 
     public Game1()
     {
@@ -51,22 +53,24 @@ public class Game1 : Game
 
     protected override void Update(GameTime gameTime)
     {
+        Dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
-
+        _scene.Update(this);
         base.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
+        DtRender = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+        // Screen rendering.
         GraphicsDevice.Clear(Color.Black);
         GraphicsDevice.SetRenderTarget(_renderTarget);
         GraphicsDevice.Clear(Color.Black);
-
-        Rectangle rect = new Rectangle(400, 300, 80, 80);
-
+ 
         _spriteBatch.Begin();
-        _scene.Render(this, gameTime);
+        _scene.Render(this);
         _spriteBatch.End();
 
         // Main render part.
