@@ -8,12 +8,22 @@ public class Game1 : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
+    private RenderTarget2D _renderTarget;
+
+    public int VirtualWidth {get; set;} = 800;
+    public int VirtualHeight {get; set;} = 600;
+
+    public Field Field {get; set;};
 
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
+
+        _graphics.PreferredBackBufferWidth = 1600;
+        _graphics.PreferredBackBufferHeight = 1200;
+        _graphics.ApplyChanges();
     }
 
     protected override void Initialize()
@@ -26,7 +36,9 @@ public class Game1 : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-
+        _renderTarget = new RenderTarget2D(
+            GraphicsDevice, VirtualWidth, VirtualHeight 
+        );
         // TODO: use this.Content to load your game content here
     }
 
