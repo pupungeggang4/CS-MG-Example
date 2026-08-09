@@ -13,6 +13,8 @@ public class Game1 : Game
     private RenderTarget2D _renderTarget;
     public Texture2D Pixel => _pixel;
     private Texture2D _pixel;
+    public SpriteFont Font => _font;
+    private SpriteFont _font;
     private Scene _scene;
 
     public int VirtualWidth = 800;
@@ -41,7 +43,7 @@ public class Game1 : Game
         else
         {
             width = (int)(monitorWidth * 0.8f);
-            height = (int)(width * 4 / 3);
+            height = (int)(width * 3 / 4);
         }
         _graphics.PreferredBackBufferWidth = width;
         _graphics.PreferredBackBufferHeight = height;
@@ -63,6 +65,7 @@ public class Game1 : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
+        _font = Content.Load<SpriteFont>("Font/Neodgm");
         _renderTarget = new RenderTarget2D(
             GraphicsDevice, VirtualWidth, VirtualHeight 
         );
@@ -81,12 +84,12 @@ public class Game1 : Game
     {
         DtRender = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-        // Screen rendering.
-        GraphicsDevice.Clear(Color.Black);
+        // Screen rendering
         GraphicsDevice.SetRenderTarget(_renderTarget);
         GraphicsDevice.Clear(Color.Black);
- 
-        _spriteBatch.Begin();
+
+        //_spriteBatch.Begin();
+        _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
         _scene.Render(this);
         _spriteBatch.End();
 

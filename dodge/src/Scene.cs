@@ -29,5 +29,9 @@ public class Scene
     public void Render(Game1 game)
     {
         game.Field.Render(game);
+        if (game.GameOver)
+        {
+            game.SpriteBatch.DrawString(game.Font, "Press Space to Restart.", new Vector2(20, 20), Color.White);
+        }
     }
 }
