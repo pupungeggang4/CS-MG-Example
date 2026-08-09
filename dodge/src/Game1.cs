@@ -15,12 +15,14 @@ public class Game1 : Game
     private Texture2D _pixel;
     private Scene _scene;
 
-    public int VirtualWidth {get; set;} = 800;
-    public int VirtualHeight {get; set;} = 600;
+    public int VirtualWidth = 800;
+    public int VirtualHeight = 600;
 
-    public Field Field {get; set;}
-    public float Dt {get; set;}
-    public float DtRender {get; set;}
+    public float Dt;
+    public float DtRender;
+
+    public Field Field;
+    public bool GameOver = false;
 
     public Game1()
     {
@@ -28,8 +30,22 @@ public class Game1 : Game
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
 
-        _graphics.PreferredBackBufferWidth = 800;
-        _graphics.PreferredBackBufferHeight = 600;
+        int monitorWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+        int monitorHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+        int width, height;
+        if (monitorWidth * 3 / 4 > monitorHeight)
+        {
+            height = (int)(monitorHeight * 0.8f);
+            width = (int)(height * 4 / 3);
+        }
+        else
+        {
+            width = (int)(monitorWidth * 0.8f);
+            height = (int)(width * 4 / 3);
+        }
+        _graphics.PreferredBackBufferWidth = width;
+        _graphics.PreferredBackBufferHeight = height;
+        _graphics.SynchronizeWithVerticalRetrace = true;
         _graphics.ApplyChanges();
     }
 
@@ -41,6 +57,7 @@ public class Game1 : Game
         _scene = new Scene();
 
         Field = new Field();
+        Field.Reset();
     }
 
     protected override void LoadContent()

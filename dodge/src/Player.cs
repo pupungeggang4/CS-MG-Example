@@ -4,9 +4,10 @@ using Microsoft.Xna.Framework.Input;
 
 namespace dodge;
 
-public class Player {
-    public float Speed {get; set;} = 320.0f;
-    public Rect2F Rect {get; set;} = new Rect2F(400.0f, 300.0f, 80.0f, 80.0f);
+public class Player
+{
+    public float Speed = 320.0f;
+    public Rect2F Rect = new Rect2F(400.0f, 300.0f, 80.0f, 80.0f);
     public Rectangle RenderRect = new Rectangle(0, 0, 0, 0);
     public Vector2 Velocity = new Vector2(0.0f, 0.0f);
 
